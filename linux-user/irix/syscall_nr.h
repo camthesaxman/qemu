@@ -258,6 +258,7 @@
 /* SGI specific syssgi calls */
 #define TARGET_NR_syssgi_sysid		(1)
 #define TARGET_NR_syssgi_elfmap		(68)
+#define TARGET_NR_syssgi_getprocattr    (85)
 #define TARGET_NR_syssgi_rldenv         (92)
 #define TARGET_NR_syssgi_tosstsave	(108)
 #define TARGET_NR_syssgi_fdhi		(109)

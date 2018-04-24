@@ -14574,6 +14574,7 @@ abi_long do_syscall(void *cpu_env, int num, abi_long arg1,
 	case TARGET_NR_syssgi_rldenv:
 	case TARGET_NR_syssgi_tosstsave:
 	case TARGET_NR_syssgi_fpbcopy:
+	case TARGET_NR_syssgi_getprocattr: /* ? 2nd=string 3rd=result ptr */
 	    ret = 0;
 	    break;
         case TARGET_NR_syssgi_setgroups:
