@@ -1622,7 +1622,7 @@ struct target_stat {
 	abi_long	target_st_ctime;
 	abi_ulong	__unused3;
 	abi_int		st_blksize;
-	int64_t		st_blocks;
+	abi_llong	st_blocks;
 	char		st_fstype[16];
 	abi_long	__unused4[8];
 };
@@ -1631,14 +1631,14 @@ struct target_stat {
 struct target_stat64 {
 	abi_ulong	st_dev;
 	abi_long	st_pad1[3];
-	uint64_t	st_ino;
+	abi_ullong	st_ino;
 	abi_uint	st_mode;
 	abi_uint	st_nlink;
 	abi_int		st_uid;
 	abi_int		st_gid;
 	abi_ulong	st_rdev;
 	abi_long	st_pad2[2];
-	int64_t		st_size;
+	abi_llong	st_size;
 	abi_long	target_st_atime;
 	abi_ulong	__unused1;
 	abi_long	target_st_mtime;
@@ -1646,7 +1646,7 @@ struct target_stat64 {
 	abi_long	target_st_ctime;
 	abi_ulong	__unused3;
 	abi_int		st_blksize;
-	int64_t		st_blocks;
+	abi_llong	st_blocks;
 	char		st_fstype[16];
 	abi_long	__unused4[8];
 };
@@ -1977,7 +1977,7 @@ struct target_stat {
 struct target_stat64 {
 	uint32_t		st_dev;
 	abi_long		st_pad0[3]; /* Reserved for st_dev expansion */
-	uint64_t		st_ino;
+	abi_ullong		st_ino;
 
 	uint32_t		st_mode;
 	uint32_t		st_nlink;
@@ -1987,7 +1987,7 @@ struct target_stat64 {
 
 	uint32_t		st_rdev;
 	abi_long		st_pad1[2]; /* Reserved for st_rdev expansion */
-	int64_t			st_size;
+	abi_llong		st_size;
         abi_long                st_pad2;
 
 	/*
@@ -2004,7 +2004,7 @@ struct target_stat64 {
         abi_long                target_st_ctime_nsec;
 
         abi_long                st_blksize;
-	int64_t			st_blocks;
+	abi_llong		st_blocks;
 	char			st_fstype[16];
 	abi_long		st_projid;
 	abi_long		st_pad[7];

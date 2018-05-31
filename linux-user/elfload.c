@@ -2067,6 +2067,8 @@ abi_ulong sgi_map_elf_image(int image_fd, struct elf_phdr *phdr, int phnum)
         }
     }
 
+    mmap_lock();
+
     /* The image indicates that it can be loaded anywhere.  Find a
        location that can hold the memory space required.  If the
        image is pre-linked, LOADDR will be non-zero.  Since we do
@@ -2113,9 +2115,13 @@ abi_ulong sgi_map_elf_image(int image_fd, struct elf_phdr *phdr, int phnum)
         }
     }
 
+    mmap_unlock();
+
     return load_bias + phdr[0].p_vaddr;
 
  exit_perror:
+    mmap_unlock();
+
     errmsg = strerror(errno);
     fprintf(stderr, "error in syssgi elfmap: %s\n", errmsg);
     return -ENOEXEC;
