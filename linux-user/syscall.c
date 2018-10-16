@@ -5787,7 +5787,7 @@ static abi_long do_ioctl_kdsigaccept(const IOCTLEntry *ie, uint8_t *buf_temp,
 }
 #endif
 
-#ifdef TIOCGPTPEER
+#if defined TIOCGPTPEER && defined TARGET_TIOCGPTPEER
 static abi_long do_ioctl_tiocgptpeer(const IOCTLEntry *ie, uint8_t *buf_temp,
                                      int fd, int cmd, abi_long arg)
 {
@@ -13829,9 +13829,10 @@ abi_long do_syscall(void *cpu_env, int num, abi_long arg1,
                 if (arg4) {
                     if (copy_from_user_timeval(&tv[0], arg4) ||
                         copy_from_user_timeval(&tv[1],
-                                          arg4 + sizeof(struct target_timeval)))
+                                          arg4 + sizeof(struct target_timeval))) {
                         unlock_user(p, arg3, 0);
                         goto efault;
+                    }
                     tvp = tv;
                 } else {
                     tvp = NULL;
