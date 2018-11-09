@@ -25,4 +25,19 @@ As a rather simple test, try:
 <target rootfs>/bin/ls
 ```
 
+### notes
+
+IRIX threading uses a local TLS storage area named PRDA which is privately mapped
+into each thread at address 0x20000. qemu-irix will emulate this behaviour if
+QEMU_IRIXPRDA is set in the environment. You most probably need to do so for any
+IRIX software using multithreading. Be aware that this will noticably harm the
+performance of the emulation since every memory access is checked for PRDA access
+(AFAIK it isn't possible to emulate this directly on linux or BSD).
+
+For conveniance I have also extended the handling of QEMU_LD_PREFIX to allow
+the specification of multiple paths separated by ':'. That way you can keep the
+target os root separate from additional software. Moreover, for a noticable
+speed gain at qemu startup, QEMU_LD_PREFIX is not pre-scanned anymore. Instead,
+it is now caching any directories accessed by the emulated program.
+
 send bug reports, fixes etc to Kai-Uwe Bloem  (<derkub@gmail.com>)
