@@ -6836,6 +6836,7 @@ case "$target_name" in
   solaris)
     TARGET_ARCH=sparc
     TARGET_ABI_DIR=solaris
+    TARGET_BASE_ARCH=sparc
     echo "TARGET_ABI_SOLARIS=y" >> $config_target_mak
   ;;
   solaris64)
